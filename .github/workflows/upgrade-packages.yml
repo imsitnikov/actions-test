@@ -1,0 +1,31 @@
+name: Upgrade packages
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 12 * * 1
+
+jobs:
+  upgrade:
+    permissions:
+      pull-requests: write
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: 'Upgrade packages'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm i @gravity-ui/uikit@latest @gravity-ui/components@latest @gravity-ui/date-components@latest @gravity-ui/icons
+          git config user.email ""
+          git config user.name "Upgrade packages action"
+          git checkout -b upgrade-packages
+          git add package.json package-lock.json
+          git commit -m "Upgrade @gravity-ui packages"
+          gh pr create --title "Upgrade @gravity-ui packages"
