@@ -30,4 +30,4 @@ jobs:
           export COMMIT_MESSAGE="Upgrade @gravity-ui packages"
           git commit -m "$COMMIT_MESSAGE"
           git push --set-upstream origin upgrade-packages --force
-          gh pr create --title "$COMMIT_MESSAGE" --body "" --add-assignee "@imsitnikov" || gh pr edit --title "$COMMIT_MESSAGE" --body "" --add-assignee "@imsitnikov"
+          gh pr create --title "$COMMIT_MESSAGE" --body "" -r "imsitnikov" || gh pr edit --title "$COMMIT_MESSAGE" --body "" -r "imsitnikov"
