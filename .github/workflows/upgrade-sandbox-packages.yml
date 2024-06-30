@@ -1,9 +1,9 @@
-name: Upgrade packages
+name: Upgrade sandbox packages
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 12 * * 1
+    - cron: 18 15 * * 0
 
 jobs:
   upgrade:
@@ -18,16 +18,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: 'Upgrade packages'
+      - name: 'Upgrade sandbox packages'
         env:
           GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           npm i @gravity-ui/uikit@latest @gravity-ui/components@latest @gravity-ui/date-components@latest @gravity-ui/icons
           git config user.email ""
-          git config user.name "Upgrade packages action"
-          git checkout -b upgrade-packages
+          git config user.name "Upgrade sandbox packages action"
+          git checkout -b upgrade-sandbox-packages
           git add package.json package-lock.json
-          export COMMIT_MESSAGE="Upgrade @gravity-ui packages"
+          export COMMIT_MESSAGE="Upgrade sandbox packages"
           git commit -m "$COMMIT_MESSAGE"
-          git push --set-upstream origin upgrade-packages --force
-          gh pr create --title "$COMMIT_MESSAGE" --body "" -r "imsitnikov" || gh pr edit --title "$COMMIT_MESSAGE" --body ""
+          git push --set-upstream origin upgrade-sandbox-packages --force
+          gh pr create --title "$COMMIT_MESSAGE" --body "" -a "imsitnikov" || gh pr edit --title "$COMMIT_MESSAGE" --body ""
