@@ -20,7 +20,7 @@ jobs:
           node-version: 20
       - name: 'Upgrade packages'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           npm i @gravity-ui/uikit@latest @gravity-ui/components@latest @gravity-ui/date-components@latest @gravity-ui/icons
           git config user.email ""
