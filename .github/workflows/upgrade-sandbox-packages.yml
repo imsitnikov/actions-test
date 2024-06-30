@@ -3,7 +3,7 @@ name: Upgrade sandbox packages
 on:
   workflow_dispatch:
   schedule:
-    - cron: 18 15 * * 0
+    - cron: 30 15 * * 0
 
 jobs:
   upgrade:
