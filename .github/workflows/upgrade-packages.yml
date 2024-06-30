@@ -28,6 +28,6 @@ jobs:
           git checkout -b upgrade-packages
           git add package.json package-lock.json
           export COMMIT_MESSAGE="Upgrade @gravity-ui packages"
-          git commit -m $COMMIT_MESSAGE
+          git commit -m "$COMMIT_MESSAGE"
           git push --set-upstream origin upgrade-packages --force
-          gh pr create --title $COMMIT_MESSAGE --body "" || gh pr edit --title $COMMIT_MESSAGE --body ""
+          gh pr create --title "$COMMIT_MESSAGE" --body "" || gh pr edit --title "$COMMIT_MESSAGE" --body ""
