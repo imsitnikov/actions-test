@@ -28,4 +28,5 @@ jobs:
           git checkout -b upgrade-packages
           git add package.json package-lock.json
           git commit -m "Upgrade @gravity-ui packages"
+          git push
           gh pr create --title "Upgrade @gravity-ui packages" --body ""
