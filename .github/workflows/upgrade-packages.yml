@@ -27,6 +27,7 @@ jobs:
           git config user.name "Upgrade packages action"
           git checkout -b upgrade-packages
           git add package.json package-lock.json
-          git commit -m "Upgrade @gravity-ui packages"
+          COMMIT_MESSAGE="Upgrade @gravity-ui packages"
+          git commit -m "${{ COMMIT_MESSAGE }}"
           git push --set-upstream origin upgrade-packages --force
-          gh pr create --title "Upgrade @gravity-ui packages" --body ""
+          gh pr create --title "${{ COMMIT_MESSAGE }}" --body "" || gh pr edit --title "${{ COMMIT_MESSAGE }}" --body ""
